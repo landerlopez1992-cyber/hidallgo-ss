@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Inicio',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_repair_service),
+            icon: Icon(Icons.handyman),
             label: 'Servicios',
           ),
           BottomNavigationBarItem(
