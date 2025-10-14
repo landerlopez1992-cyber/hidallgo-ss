@@ -1,4 +1,4 @@
-// @dart=3.9
+// @dart=3.1
 // Flutter web bootstrap script for package:tairon_app/main.dart.
 //
 // Generated file. Do not edit.

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'membership_screen.dart';
+import 'cart_screen.dart';
 import 'services_screen.dart';
 import 'store_screen.dart';
 import 'quote_form_screen.dart';
-import 'cart_screen.dart';
+import 'account_screen.dart';
+import 'chat_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,12 +15,63 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _cartItemCount = 0;
+  int _cartItemCount = 3; // Simular algunos productos en el carrito
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
+      body: _getCurrentScreen(),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
+        selectedItemColor: Color(0xFF1565C0),
+        unselectedItemColor: Color(0xFF666666),
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Inicio',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.build),
+            label: 'Servicios',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.chat),
+            label: 'Chat',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Mi Cuenta',
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _getCurrentScreen() {
+    switch (_currentIndex) {
+      case 0:
+        return _buildHomeContent();
+      case 1:
+        return ServicesScreen();
+      case 2:
+        return ChatScreen();
+      case 3:
+        return AccountScreen();
+      default:
+        return _buildHomeContent();
+    }
+  }
+
+  Widget _buildHomeContent() {
+    return CustomScrollView(
         slivers: [
           // Modern App Bar with Hero Section
           SliverAppBar(
@@ -27,14 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
             pinned: true,
             backgroundColor: Color(0xFF0D47A1),
             flexibleSpace: FlexibleSpaceBar(
-              title: Text(
-                'Hidallgo\'S',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
-              ),
+              title: Container(),
               background: Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -58,82 +104,98 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                    // Logo and main content
-                    Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.2),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Image.asset(
-                              'assets/logo_tairon_new.png',
-                              height: 80,
-                              width: 80,
-                              filterQuality: FilterQuality.high,
-                              isAntiAlias: true,
-                            ),
+                  // Logo and main content
+                  Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/logo_tairon_new.png',
+                          height: 100,
+                          width: 100,
+                          filterQuality: FilterQuality.high,
+                          isAntiAlias: true,
+                        ),
+                        SizedBox(height: 12),
+                        Text(
+                          'Contratista General',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
                           ),
-                          SizedBox(height: 12),
-                          Text(
-                            'Contratista General',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(height: 8),
+                        Stack(
+                          children: [
+                            Center(
+                              child: Text(
+                                'Hidallgo\'S',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
+                            // Shopping Cart Icon - Pegado a la derecha
+                            Positioned(
+                              right: 0,
+                              top: -5,
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                child: Stack(
+                                  children: [
+                                    IconButton(
+                                      icon: Icon(Icons.shopping_cart, color: Colors.white, size: 28),
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => CartScreen()),
+                                        );
+                                      },
+                                    ),
+                                    if (_cartItemCount > 0)
+                                      Positioned(
+                                        right: 5,
+                                        top: 5,
+                                        child: Container(
+                                          padding: EdgeInsets.all(2),
+                                          decoration: BoxDecoration(
+                                            color: Color(0xFFFF5722),
+                                            borderRadius: BorderRadius.circular(10),
+                                          ),
+                                          constraints: BoxConstraints(
+                                            minWidth: 16,
+                                            minHeight: 16,
+                                          ),
+                                          child: Text(
+                                            '$_cartItemCount',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
+                  ),
                   ],
                 ),
               ),
             ),
-            actions: [
-              // Shopping Cart Icon
-              Stack(
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.shopping_cart, color: Colors.white),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => CartScreen()),
-                      );
-                    },
-                  ),
-                  if (_cartItemCount > 0)
-                    Positioned(
-                      right: 8,
-                      top: 8,
-                      child: Container(
-                        padding: EdgeInsets.all(2),
-                        decoration: BoxDecoration(
-                          color: Color(0xFFFF9800),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        constraints: BoxConstraints(
-                          minWidth: 16,
-                          minHeight: 16,
-                        ),
-                        child: Text(
-                          '$_cartItemCount',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                ],
-              ),
-            ],
+            actions: [],
           ),
 
           // Content
@@ -189,8 +251,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ],
-      ),
-    );
+      );
   }
 
   Widget _buildQuickStats() {
@@ -574,9 +635,41 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            stars,
-            style: TextStyle(fontSize: 18),
+          Row(
+            children: [
+              CircleAvatar(
+                radius: 20,
+                backgroundColor: Color(0xFF1565C0),
+                child: Text(
+                  name.substring(0, 1),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+              SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      name,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF2C2C2C),
+                      ),
+                    ),
+                    Text(
+                      stars,
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
           SizedBox(height: 12),
           Text(
@@ -587,15 +680,6 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 1.4,
             ),
           ),
-          SizedBox(height: 16),
-          Text(
-            name,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF1565C0),
-            ),
-          ),
         ],
       ),
     );
@@ -603,47 +687,55 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildFooter() {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       color: Color(0xFF2C2C2C),
-      child: Column(
-        children: [
-          Text(
-            'Hidallgo\'S LLC - Todos los derechos reservados',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 14,
+      child: SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Hidallgo\'S LLC - Todos los derechos reservados',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 12,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.phone, color: Colors.white, size: 16),
-              SizedBox(width: 8),
-              Text(
-                '561-480-9355',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
+            SizedBox(height: 6),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.phone, color: Colors.white, size: 14),
+                SizedBox(width: 6),
+                Text(
+                  '561-480-9355',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                  ),
                 ),
-              ),
-              SizedBox(width: 20),
-              Icon(Icons.email, color: Colors.white, size: 16),
-              SizedBox(width: 8),
-              Text(
-                'info@hidallgos.com',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
+                SizedBox(width: 16),
+                Icon(Icons.email, color: Colors.white, size: 14),
+                SizedBox(width: 6),
+                Flexible(
+                  child: Text(
+                    'info@hidallgos.com',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
+
 
   void _showReviewDialog() {
     showModalBottomSheet(

@@ -3,11 +3,11 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"flutter_bootstrap.js": "a3a5ce87fb526590c2f067db70775cc3",
+const RESOURCES = {"flutter_bootstrap.js": "f7e8adf08429e50ad6ad51b0c63d89ff",
 "version.json": "b4ca606dd02ccb25c92a52276be76409",
 "index.html": "dbb66e174b4754a2bb5c32996f21dcff",
 "/": "dbb66e174b4754a2bb5c32996f21dcff",
-"main.dart.js": "fc36b413a16ae9dfc52fdb3ef1574015",
+"main.dart.js": "da28a827a02c5853347f30bdd78108cc",
 "flutter.js": "888483df48293866f9f41d3d9274a779",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
@@ -22,7 +22,7 @@ const RESOURCES = {"flutter_bootstrap.js": "a3a5ce87fb526590c2f067db70775cc3",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "33b7d9392238c04c131b6ce224e13711",
 "assets/shaders/ink_sparkle.frag": "ecc85a2e95f5e9f53123dcaf8cb9b6ce",
 "assets/AssetManifest.bin": "34f4db9c36b5d419e1dfa3ced44fb68b",
-"assets/fonts/MaterialIcons-Regular.otf": "967999d1cd2fe454f49b37f38b17cd25",
+"assets/fonts/MaterialIcons-Regular.otf": "37ae1e0e05c4afdfb5cc7198ee89f130",
 "assets/assets/inodoro%2520moderno.png": "4a082bbd1a467502205d5f17571a8dca",
 "assets/assets/ducha%2520moderna.png": "9a7b12f7f3f512e3f9362bf1694db7d2",
 "assets/assets/lavamanos.jpg": "5d685bd6f8548331488a1407bcf6585b",
