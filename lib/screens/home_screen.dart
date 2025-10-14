@@ -566,7 +566,7 @@ class _HomeScreenState extends State<HomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Lo que dicen nuestros clientes',
+            'Lo Que Dicen Nuestros Clientes',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -580,18 +580,43 @@ class _HomeScreenState extends State<HomeScreen> {
               scrollDirection: Axis.horizontal,
               children: [
                 _buildTestimonialCard(
-                  'María González',
-                  'Excelente trabajo en mi remodelación. Muy profesionales y puntuales.',
+                  'Jose Adura',
+                  'Sin dudas los mejores de West Palm Beach, me remodelaron toda la casa y desde un principio pensé que se demorarían ya que sé que estoy en Fort Lauderdale pero cumplieron en tiempo.',
                   '⭐⭐⭐⭐⭐',
                 ),
                 _buildTestimonialCard(
-                  'Carlos Rodríguez',
-                  'El mejor servicio de A/C que he contratado. Altamente recomendado.',
+                  'Arturo SG',
+                  'Felicitaciones a Hidallgo\'S por embellecer mi baño de esa forma, si pudiera subir fotos aquí lo haría para que vean como me dejó mi baño, felicidades y claro que los recomiendo.',
                   '⭐⭐⭐⭐⭐',
                 ),
                 _buildTestimonialCard(
-                  'Ana Martínez',
-                  'Solucionaron mi problema de plomería en minutos. Muy eficientes.',
+                  'Juan Lopez',
+                  'Los mejores, me remodelaron mi baño en West Palm Beach y quedó super, en tiempo y no me quejo del precio en comparación con otras compañías.',
+                  '⭐⭐⭐⭐⭐',
+                ),
+                _buildTestimonialCard(
+                  'Michael Johnson',
+                  'Outstanding work! They remodeled my kitchen in Boca Raton and the results exceeded my expectations. Professional, punctual, and reasonably priced.',
+                  '⭐⭐⭐⭐⭐',
+                ),
+                _buildTestimonialCard(
+                  'Sarah Martinez',
+                  'Best contractors in South Florida! They handled my entire home renovation with care and precision. The team was respectful, clean, and delivered on time.',
+                  '⭐⭐⭐⭐⭐',
+                ),
+                _buildTestimonialCard(
+                  'Ernesto Treto',
+                  'Super, los muchachos honestos sobre todo, a pesar de algunos inconvenientes quedaron bien y el trabajo ni se diga, todo bien, los super recomiendo.',
+                  '⭐⭐⭐⭐⭐',
+                ),
+                _buildTestimonialCard(
+                  'Robert Williams',
+                  'Excellent service from start to finish! Hidallgo\'S LLC transformed my outdated bathroom into a modern masterpiece. Great communication and fair pricing.',
+                  '⭐⭐⭐⭐⭐',
+                ),
+                _buildTestimonialCard(
+                  'Lisa Thompson',
+                  'I am so impressed with the quality of work! They remodeled my living room and the attention to detail was incredible. Very professional team, I highly recommend them.',
                   '⭐⭐⭐⭐⭐',
                 ),
               ],
